@@ -1,0 +1,77 @@
+{% extends "base.html" %} 
+
+{% block body %} 
+  <div class="container my-5">
+    <div class="accordion" id="accordionPanelsStayOpenExample">
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+            Adding new data types to the database
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+            <div class="accordion-body">
+                <ol class="list-group list-group-numbered">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">Add Model Class in <code>turbulenceWeb/models.py</code></div>
+                    Open <code>turbulenceWeb/models.py</code> and add a new class for the data type you want to add. For example, if you want to add a new data type called <code>MHD</code>, you would add the following code to <code>turbulenceWeb/models.py</code>:
+                    <br>
+                    <img src="/static/images/snippets_model.png" alt="" class="img-fluid">
+                    </div>
+                    {% comment %} <span class="badge bg-primary rounded-pill">14</span> {% endcomment %}
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">Make Migrations</div>
+                    Go to the terminal and run the following commands (make sure you are in the project directory):
+                    <br>
+                    <code>python manage.py makemigrations</code>
+                    <br>
+
+                    <code>python manage.py migrate</code>
+                    <br>
+
+                    </div>
+                    {% comment %} <span class="badge bg-primary rounded-pill">14</span> {% endcomment %}
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                    <div class="fw-bold">Registering Model in <code>turbulenceWeb/admin.py</code></div>
+                       Open <code>turbulenceWeb/admin.py</code> and add the following code to register the new model:
+                          <br>
+                            <img src="/static/images/Model_registration.png" alt="" class="img-fluid">
+                    </div>
+                    {% comment %} <span class="badge bg-primary rounded-pill">14</span> {% endcomment %}
+                </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    {% comment %} <div class="accordion-item">
+        <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+            Accordion Item #2
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+            Accordion Item #3
+        </button>
+        </h2>
+        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+        </div>
+        </div>
+    </div> {% endcomment %}
+    </div>
+  </div>
+{% endblock %}

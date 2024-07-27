@@ -1,0 +1,86 @@
+<div class="px-3">
+  <div class="row">
+    <div class="col-3">
+        <form class="border rounded p-2" action="/get_dataset" method="get">
+            {% comment %} for each property we apply filter and according to the type if it's number of string filter type would be range or contains {% endcomment %}
+
+            {% for property in fields %}
+                <label class="form-label text-capitalize" for="{{property}}">{{property}}</label>
+                <input hidden type="text" name="dataset-kind" value="{{dataset_kind}}">
+                {% if property in number_fields %}
+                    <div class="input-group">
+                        {% if property == "dimension" %}
+                    <select id="{{property}}" class="form-select" aria-label="dimension:" name="{{property}}">
+                        <option selected value="0">All</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>                
+                        
+                        {% else %}
+                            <input class="form-control" step="any" type="number" name="{{property}}_from" placeholder="from">
+                            <input class="form-control" step="any" type="number" name="{{property}}_to" placeholder="to">
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="input-group">
+                        {% comment %} <span class="input-group-text"> {{property}}</span> {% endcomment %}
+                        <input class="form-control" type="text" name="{{property}}" placeholder="contains">
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <button class="btn btn-primary" type="submit">Filter</button>
+        </form>
+    </div>
+    <div class="col-9 ">
+        {% if results|length == 0 %}
+        <div class="container">
+            <div class="alert alert-danger" role="alert">
+                NO RESULTS FOUND
+            </div>      
+        </div>
+        {% comment %} NO RESULTS FOUND {% endcomment %}
+        {% else %}
+
+        <div class="overflow-auto">
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                        
+                <tr>
+                    {% for property in fields %}
+                        <th class="text-capitalize">
+                            {{ property }}
+                        </th>    
+                    {% endfor %}
+                    </tr>
+
+
+
+                </thead>
+                <tbody>
+
+                {% for item in results %}
+                <tr>
+                {% for property in item %}
+                    <td> 
+                        {% autoescape off %}
+
+                            {{property}}
+                        {% endautoescape %}
+                    </td>
+                {% endfor %}
+                </tr>
+            {% endfor %}
+            </tbody>
+            </table>    
+        </div>
+        {% endif %}
+
+    </div>
+  </div>
+</div>
+
+
+
+

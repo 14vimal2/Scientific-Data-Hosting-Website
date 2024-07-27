@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <!-- Body section -->
+    <div class="container">
+
+        <div class="my-3 py-3">
+            <form action="/get_dataset">
+
+                <div class="input-group">
+                    <select id="dataset-kind" class="form-select" aria-label="Choose a model:" id="dataset-kind" name="dataset-kind">
+                        <!-- loop for each model in model_names  -->
+                        {% for model in model_names %}
+                            <!-- if dataset_kind is same then selected else not active -->
+                            {% if model == dataset_kind %}
+                                {% comment %} if model is "Choose your model" then it is a disabled option {% endcomment %}
+                                {% if model == "Choose your model" %}
+                                    <option value="{{ model }}" selected disabled>Choose your model</option>
+                                {% else %}
+                                    <option value="{{ model }}" selected>{{ model }}</option>
+                                {% endif %}
+
+                            {% else %}
+                                <option value="{{ model }}">{{ model }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>                
+                    {% if dataset_kind == "Choose your model"  %}
+                        <button id="dataset-kind-button" type="submit" class="btn btn-primary" disabled>SEARCH</button>
+                    {% else %}
+                        <button id="dataset-kind-button" type="submit" class="btn btn-primary">SEARCH</button>
+                    {% endif %}
+                </div>
+        
+                <span>
+                </span>
+            </form>
+        </div>
+
+    </div>
+
+    <div>        
+        <div id="content-center" class="py-3 my-3" >
+                {% include "data_table.html" %}            
+        </div>
+    </div>
+{% endblock %}
